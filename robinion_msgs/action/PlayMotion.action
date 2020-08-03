@@ -1,0 +1,9 @@
+# Goal
+string motion_name
+float32 movement_time
+---
+# result
+bool success
+---
+# feedback 
+bool is_running

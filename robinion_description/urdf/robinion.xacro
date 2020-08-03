@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<robot name="robinion" xmlns:xacro="http://www.ros.org/wiki/xacro">
+
+    <xacro:property name="pi" value="3.141592654" />
+
+    <xacro:include filename="$(find robinion_description)/urdf/robinion.gazebo.xacro" />
+    <xacro:include filename="$(find robinion_description)/urdf/robinion.structure.head.xacro" />
+    <xacro:include filename="$(find robinion_description)/urdf/robinion.structure.arm.xacro" />
+    <xacro:include filename="$(find robinion_description)/urdf/robinion.structure.leg.xacro" />
+    <xacro:include filename="$(find robinion_description)/urdf/robinion.transmissions.xacro" />
+
+    <link name="base_link">
+    </link>
+
+    <joint name="base_fixed_joint" type="fixed">
+        <parent link="base_link"/>
+        <child link="torso_link"/>
+        <origin xyz="0.000 0.000 0.000" rpy="0 0 0"/>
+    </joint>
+    
+    <link name="torso_link">
+        <collision>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="package://robinion_description/meshes/collision/lower_body_collision.stl"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="package://robinion_description/meshes/visual/lower_body_visual.stl"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="-0.007122 0.000256 0.034914" rpy="0.00 0.00 0.00"/>
+            <mass value="0.960747"/>
+            <inertia ixx="0.002662" ixy="0.000002" ixz="0.000113"
+                     iyy="0.001197" iyz="0.000003"
+                     izz="0.002578" />
+        </inertial>
+    </link>
+
+    <joint name="torso_pitch_joint" type="revolute">
+        <parent link="torso_link"/>
+        <child link="upper_body_link"/>
+        <origin xyz="0.019 0.025 0.071" rpy="0 0 0"/>
+        <axis xyz="0 1 0"/>
+        <limit velocity="3.14" effort="10.6" lower="-0.52" upper="${pi*0.5}" />
+        <!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+        <dynamics damping="0.1" friction="0.0" />
+        <implicitSpringDamper>True</implicitSpringDamper>
+    </joint>
+    <xacro:insert_transmission name="torso_pitch_joint" />
+
+    <link name="upper_body_link">
+        <collision>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="package://robinion_description/meshes/collision/upper_body_collision.stl"/>
+            </geometry>
+        </collision>
+        <visual>
+            <origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+            <geometry>
+                <mesh filename="package://robinion_description/meshes/visual/upper_body_visual.stl"/>
+            </geometry>
+        </visual>
+        <inertial>
+            <origin xyz="-0.029870 -0.024411 0.123492" rpy="0.00 0.00 0.00"/>
+            <mass value="1.234139"/>
+            <inertia ixx="0.006795" ixy="0.000000" ixz="-0.000098"
+                     iyy="0.003101" iyz="-0.000005"
+                     izz="0.006100" />
+        </inertial>
+    </link>
+
+    <joint name="imu_fixed_joint" type="fixed">
+        <parent link="upper_body_link"/>
+        <child link="imu_link"/>
+        <origin xyz="-0.021 -0.025 0.122" rpy="0 0 0"/>
+    </joint>
+
+    <link name="imu_link">
+    </link>
+
+    <xacro:robinion_head parent="upper_body_link" />
+    <xacro:robinion_l_arm parent="upper_body_link" />
+    <xacro:robinion_r_arm parent="upper_body_link" />
+    <xacro:robinion_l_leg parent="base_link" />
+    <xacro:robinion_r_leg parent="base_link" />
+
+</robot>

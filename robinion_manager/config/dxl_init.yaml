@@ -1,0 +1,168 @@
+torso_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+head_yaw_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+head_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+l_shoulder_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+l_shoulder_roll_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+l_elbow_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+l_elbow_yaw_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+r_shoulder_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+r_shoulder_roll_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+r_elbow_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+r_elbow_yaw_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+l_hip_yaw_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+l_hip_roll_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+l_hip_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+l_ankle_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+l_ankle_roll_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+r_hip_yaw_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+r_hip_roll_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+r_hip_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+r_ankle_pitch_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1
+r_ankle_roll_joint:
+  max_position_limit: 4095
+  min_position_limit: 0
+  operating_mode: 3
+  position_d_gain: 0
+  position_i_gain: 0
+  position_p_gain: 800
+  return_delay_time: 1

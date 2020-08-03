@@ -1,0 +1,11 @@
+# goal
+geometry_msgs/Pose target_pose
+float32 movement_time
+float32 dt
+---
+# result
+bool success
+---
+# feedback
+geometry_msgs/Pose current_pose
+float32 current_time

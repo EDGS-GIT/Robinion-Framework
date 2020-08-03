@@ -1,0 +1,168 @@
+robinion:
+  # Publish all joint states -----------------------------------
+  joint_state_controller:
+    type: joint_state_controller/JointStateController
+    publish_rate: 125  
+  
+  # Position Controllers ---------------------------------------
+  
+  # Body ------
+
+  torso_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: torso_pitch_joint
+    pid: {p: 300, i: 0.0, d: 0.0}
+  
+  # Head -----
+
+  head_yaw_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: head_yaw_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  head_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: head_pitch_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  # Left Arm -----
+
+  l_shoulder_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_shoulder_pitch_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  l_shoulder_roll_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_shoulder_roll_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  l_elbow_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_elbow_pitch_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  l_elbow_yaw_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_elbow_yaw_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  # Right Arm -----
+
+  r_shoulder_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_shoulder_pitch_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  r_shoulder_roll_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_shoulder_roll_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  r_elbow_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_elbow_pitch_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  r_elbow_yaw_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_elbow_yaw_joint
+    pid: {p: 20, i: 0.0, d: 0.0}
+
+  # Left Leg -----
+
+  l_hip_yaw_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_hip_yaw_joint
+    pid: {p: 200, i: 0.0, d: 0.0}
+
+  l_hip_roll_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_hip_roll_joint
+    pid: {p: 200, i: 0.0, d: 0.0}
+
+  l_hip_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_hip_pitch_joint
+    pid: {p: 200, i: 0.0, d: 0.0}
+  
+  # Passive joint
+  l_hip_pitch_passive_1_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_hip_pitch_passive_1_joint
+    pid: {p: 0.0, i: 0.0, d: 0.0}
+  
+  l_knee_passive_1_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_knee_passive_1_joint
+    pid: {p: 0.0, i: 0.0, d: 0.0}
+  
+  l_knee_passive_3_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_knee_passive_3_joint
+    pid: {p: 0.0, i: 0.0, d: 0.0}
+  
+  l_knee_passive_4_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_knee_passive_4_joint
+    pid: {p: 0.0, i: 0.0, d: 0.0}
+  # End passive joint
+
+  l_ankle_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_ankle_pitch_joint
+    pid: {p: 200, i: 0.0, d: 0.0}
+  
+  l_ankle_roll_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: l_ankle_roll_joint
+    pid: {p: 200, i: 0.0, d: 0.0}
+  
+  # Right Leg -----
+
+  r_hip_yaw_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_hip_yaw_joint
+    pid: {p: 200, i: 0.0, d: 0.0}
+
+  r_hip_roll_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_hip_roll_joint
+    pid: {p: 200, i: 0.0, d: 0.0}
+
+  r_hip_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_hip_pitch_joint
+    pid: {p: 200, i: 0.0, d: 0.0}
+  
+  # Passive joint
+  r_hip_pitch_passive_1_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_hip_pitch_passive_1_joint
+    pid: {p: 0.0, i: 0.0, d: 0.0}
+  
+  r_knee_passive_1_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_knee_passive_1_joint
+    pid: {p: 0.0, i: 0.0, d: 0.0}
+  
+  r_knee_passive_3_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_knee_passive_3_joint
+    pid: {p: 0.0, i: 0.0, d: 0.0}
+  
+  r_knee_passive_4_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_knee_passive_4_joint
+    pid: {p: 0.0, i: 0.0, d: 0.0}
+  # End passive joint
+
+  r_ankle_pitch_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_ankle_pitch_joint
+    pid: {p: 200, i: 0.0, d: 0.0}
+  
+  r_ankle_roll_joint_position:
+    type: effort_controllers/JointPositionController
+    joint: r_ankle_roll_joint
+    pid: {p: 200, i: 0.0, d: 0.0}

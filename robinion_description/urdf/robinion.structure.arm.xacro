@@ -1,0 +1,301 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">	
+
+	<!-- <xacro:property name="pi" value="3.141592654" /> -->
+
+	<xacro:macro name="robinion_l_arm" params="parent">
+		<joint name="l_shoulder_pitch_joint" type="revolute">
+			<parent link="${parent}"/>
+			<child link="l_shoulder_link"/>
+			<origin xyz="-0.021 0.082 0.139" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="3.14" effort="10.6" lower="${-pi*0.9}" upper="${pi*0.9}" />
+			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_shoulder_pitch_joint" />
+	
+		<link name="l_shoulder_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_shoulder_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_shoulder_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.000002 0.012421 -0.004084" rpy="0.00 0.00 0.00"/>
+				<mass value="0.065396"/>
+				<inertia ixx="0.000019" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000045" iyz="-0.000003"
+						 izz="0.000044" />
+			</inertial>
+		</link>
+	
+		<joint name="l_shoulder_roll_joint" type="revolute">
+			<parent link="l_shoulder_link"/>
+			<child link="l_arm_1_link"/>
+			<origin xyz="0.025 0.033 -0.021" rpy="0 0 0"/>
+			<axis xyz="1 0 0"/>
+			<limit velocity="3.14" effort="10.6" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_shoulder_roll_joint" />
+	
+		<link name="l_arm_1_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_arm_1_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_arm_1_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.027891 0.046707 0.000000" rpy="0.00 0.00 0.00"/>
+				<mass value="0.389041"/>
+				<inertia ixx="0.000698" ixy="-0.000079" ixz="0.000000"
+						 iyy="0.000117" iyz="0.000000"
+						 izz="0.000753" />
+			</inertial>
+		</link>
+	
+		<joint name="l_elbow_pitch_joint" type="revolute">
+			<parent link="l_arm_1_link"/>
+			<child link="l_arm_2_link"/>
+			<origin xyz="-0.025 0.118 0.000" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="4.82" effort="4.1" lower="${-pi*0.9}" upper="${pi*0.9}" />
+			<!-- <limit velocity="4.82" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_elbow_pitch_joint" />
+	
+		<link name="l_arm_2_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_arm_2_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_arm_2_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.003756 0.032656 0.000000" rpy="0.00 0.00 0.00"/>
+				<mass value="0.051730"/>
+				<inertia ixx="0.000036" ixy="0.000005" ixz="0.000000"
+						 iyy="0.000028" iyz="0.000000"
+						 izz="0.000025" />
+			</inertial>
+		</link>
+	
+		<joint name="l_elbow_yaw_joint" type="revolute">
+			<parent link="l_arm_2_link"/>
+			<child link="l_arm_3_link"/>
+			<origin xyz="0.022 0.060 0.025" rpy="0 0 0"/>
+			<axis xyz="0 0 1"/>
+			<limit velocity="3.14" effort="10.6" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_elbow_yaw_joint" />
+	
+		<link name="l_arm_3_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_arm_3_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_arm_3_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.000000 0.018081 -0.023869" rpy="0.00 0.00 0.00"/>
+				<mass value="0.246669"/>
+				<inertia ixx="0.000135" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000064" iyz="-0.000001"
+						 izz="0.000121" />
+			</inertial>
+		</link>
+
+		<joint name="l_wrist_fixed_joint" type="fixed">
+			<parent link="l_arm_3_link"/>
+			<child link="l_wrist"/>
+			<origin xyz="0.000 0.068 -0.025" rpy="0 0 0"/>
+		</joint>
+
+		<link name="l_wrist">
+		</link>
+
+	</xacro:macro>
+
+	<xacro:macro name="robinion_r_arm" params="parent">
+		<joint name="r_shoulder_pitch_joint" type="revolute">
+			<parent link="${parent}"/>
+			<child link="r_shoulder_link"/>
+			<origin xyz="-0.021 -0.131 0.139" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="3.14" effort="10.6" lower="${-pi*0.9}" upper="${pi*0.9}" />
+			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_shoulder_pitch_joint" />
+	
+		<link name="r_shoulder_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_shoulder_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_shoulder_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.000002 -0.012421 -0.004084" rpy="0.00 0.00 0.00"/>
+				<mass value="0.065396"/>
+				<inertia ixx="0.000019" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000045" iyz="0.000003"
+						 izz="0.000044" />
+			</inertial>
+		</link>
+	
+		<joint name="r_shoulder_roll_joint" type="revolute">
+			<parent link="r_shoulder_link"/>
+			<child link="r_arm_1_link"/>
+			<origin xyz="0.025 -0.033 -0.021" rpy="0 0 0"/>
+			<axis xyz="1 0 0"/>
+			<limit velocity="3.14" effort="10.6" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_shoulder_roll_joint" />
+	
+		<link name="r_arm_1_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_arm_1_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_arm_1_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.027884 -0.046707 0.000000" rpy="0.00 0.00 0.00"/>
+				<mass value="0.389041"/>
+				<inertia ixx="0.000698" ixy="0.000079" ixz="0.000000"
+						 iyy="0.000117" iyz="0.000000"
+						 izz="0.000753" />
+			</inertial>
+		</link>
+	
+		<joint name="r_elbow_pitch_joint" type="revolute">
+			<parent link="r_arm_1_link"/>
+			<child link="r_arm_2_link"/>
+			<origin xyz="-0.025 -0.118 0.000" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="4.82" effort="4.1" lower="${-pi*0.9}" upper="${pi*0.9}" />
+			<!-- <limit velocity="4.82" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_elbow_pitch_joint" />
+	
+		<link name="r_arm_2_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_arm_2_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_arm_2_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.003756 -0.032656 0.000000" rpy="0.00 0.00 0.00"/>
+				<mass value="0.051730"/>
+				<inertia ixx="0.000036" ixy="-0.000005" ixz="0.000000"
+						 iyy="0.000028" iyz="0.000000"
+						 izz="0.000025" />
+			</inertial>
+		</link>
+	
+		<joint name="r_elbow_yaw_joint" type="revolute">
+			<parent link="r_arm_2_link"/>
+			<child link="r_arm_3_link"/>
+			<origin xyz="0.022 -0.060 0.025" rpy="0 0 0"/>
+			<axis xyz="0 0 1"/>
+			<limit velocity="3.14" effort="10.6" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_elbow_yaw_joint" />
+	
+		<link name="r_arm_3_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_arm_3_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_arm_3_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.000000 -0.018081 -0.023869" rpy="0.00 0.00 0.00"/>
+				<mass value="0.246669"/>
+				<inertia ixx="0.000135" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000064" iyz="0.000001"
+						 izz="0.000121" />
+			</inertial>
+		</link>
+
+		<joint name="r_wrist_fixed_joint" type="fixed">
+			<parent link="r_arm_3_link"/>
+			<child link="r_wrist"/>
+			<origin xyz="0.000 -0.068 -0.025" rpy="0 0 0"/>
+		</joint>
+
+		<link name="r_wrist">
+		</link>
+
+	</xacro:macro>
+</robot>

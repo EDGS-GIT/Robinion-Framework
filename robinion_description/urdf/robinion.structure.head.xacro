@@ -1,0 +1,92 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">	
+    <!-- <xacro:property name="pi" value="3.141592654" /> -->
+	<xacro:macro name="robinion_head" params="parent">
+		<joint name="head_yaw_joint" type="revolute">
+			<parent link="${parent}"/>
+			<child link="head_yaw_link"/>
+			<origin xyz="-0.013 -0.025 0.183" rpy="0 0 0"/>
+			<axis xyz="0 0 1"/>
+			<limit velocity="4.82" effort="4.1" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="4.82" effort="1000" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="head_yaw_joint" />
+	
+		<link name="head_yaw_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/head_yaw_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/head_yaw_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.000000 0.000000 0.014692" rpy="0.00 0.00 0.00"/>
+				<mass value="0.014680"/>
+				<inertia ixx="0.000008" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000005" iyz="0.000000"
+						 izz="0.000004" />
+			</inertial>
+		</link>
+	
+		<joint name="head_pitch_joint" type="revolute">
+			<parent link="head_yaw_link"/>
+			<child link="head_pitch_link"/>
+			<origin xyz="0.000 0.019 0.047" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="4.82" effort="4.1" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="4.82" effort="1000" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="head_pitch_joint" />
+	
+		<link name="head_pitch_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/head_pitch_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/head_pitch_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.000143 -0.018869 0.039737" rpy="0.00 0.00 0.00"/>
+				<mass value="0.150012"/>
+				<inertia ixx="0.000156" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000090" iyz="0.000000"
+						 izz="0.000097" />
+			</inertial>
+		</link>
+		
+		<joint name="cam_fixed_joint" type="fixed">
+			<parent link="head_pitch_link"/>
+			<child link="cam_link"/>
+			<origin xyz="0.019 -0.019 0.054" rpy="-1.5708 0 -1.5708"/>
+		</joint>
+
+		<link name="cam_link">
+		</link>
+
+		<joint name="gaze_fixed_joint" type="fixed">
+			<parent link="head_pitch_link"/>
+			<child link="gaze_link"/>
+			<origin xyz="0.019 -0.019 0.054" rpy="0 0 0"/>
+		</joint>
+
+		<link name="gaze_link">
+		</link>
+
+	</xacro:macro>
+</robot>

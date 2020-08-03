@@ -1,0 +1,6 @@
+<launch>
+    <include file="$(find robinion_gazebo)/launch/robinion_world.launch" />
+    <include file="$(find robinion_manager)/launch/robinion_gazebo.launch" />
+    <include file="$(find robinion_kinematics_solver)/launch/kinematics_solver.launch" />
+    <include file="$(find robinion_manipulation_module)/launch/manipulation_module.launch" />
+</launch>

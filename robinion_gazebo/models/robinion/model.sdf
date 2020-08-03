@@ -1,0 +1,1732 @@
+<?xml version="1.0"?>
+<sdf version="1.5">
+    <model name="robinion">
+        <static>false</static>
+        <self_collide>false</self_collide>
+        <!-- Body -->
+        <link name='base_link'>
+            <pose frame=''>0 0 0 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.007122 0.000256 0.034914 0 -0 0</pose>
+                <mass>0.960747</mass>
+                <inertia>
+                    <ixx>0.002662</ixx>
+                    <ixy>2e-06</ixy>
+                    <ixz>0.000113</ixz>
+                    <iyy>0.001197</iyy>
+                    <iyz>3e-06</iyz>
+                    <izz>0.002578</izz>
+                </inertia>
+            </inertial>
+            <collision name='base_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/lower_body_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='base_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/lower_body_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='torso_y_joint' type='revolute'>
+            <child>upper_body_link</child>
+            <parent>base_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='upper_body_link'>
+            <pose frame=''>0.019 0.025 0.071 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.02987 -0.024411 0.123492 0 -0 0</pose>
+                <mass>1.23414</mass>
+                <inertia>
+                    <ixx>0.006795</ixx>
+                    <ixy>0</ixy>
+                    <ixz>-9.8e-05</ixz>
+                    <iyy>0.003101</iyy>
+                    <iyz>-5e-06</iyz>
+                    <izz>0.0061</izz>
+                </inertia>
+            </inertial>
+            <collision name='upper_body_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/upper_body_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='upper_body_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/upper_body_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+        
+        <!-- Kepala -->
+
+        <joint name='head_yaw_joint' type='revolute'>
+            <child>head_yaw_link</child>
+            <parent>upper_body_link</parent>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='head_yaw_link'>
+            <pose frame=''>0.006 0 0.254 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0 0 0.014692 0 -0 0</pose>
+                <mass>0.01468</mass>
+                <inertia>
+                    <ixx>8e-06</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>5e-06</iyy>
+                    <iyz>0</iyz>
+                    <izz>4e-06</izz>
+                </inertia>
+            </inertial>
+            <collision name='head_yaw_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/head_yaw_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='head_yaw_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/head_yaw_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='head_pitch_joint' type='revolute'>
+            <child>head_pitch_link</child>
+            <parent>head_yaw_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='head_pitch_link'>
+            <pose frame=''>0.006 0.019 0.301 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.000143 -0.018869 0.039737 0 -0 0</pose>
+                <mass>0.150012</mass>
+                <inertia>
+                    <ixx>0.000156</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>9e-05</iyy>
+                    <iyz>0</iyz>
+                    <izz>9.7e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='head_pitch_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/head_pitch_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='head_pitch_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/head_pitch_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+        
+        <!-- Tangan Kiri -->
+
+        <joint name='l_shoulder_pitch_joint' type='revolute'>
+            <child>l_shoulder_link</child>
+            <parent>upper_body_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_shoulder_link'>
+            <pose frame=''>-0.002 0.107 0.21 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>2e-06 0.012421 -0.004084 0 -0 0</pose>
+                <mass>0.065396</mass>
+                <inertia>
+                    <ixx>1.9e-05</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>4.5e-05</iyy>
+                    <iyz>-3e-06</iyz>
+                    <izz>4.4e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_shoulder_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_shoulder_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_shoulder_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_shoulder_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_shoulder_roll_joint' type='revolute'>
+            <child>l_arm_1_link</child>
+            <parent>l_shoulder_link</parent>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+        
+        <link name='l_arm_1_link'>
+            <pose frame=''>0.023 0.14 0.189 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.027891 0.046707 0 0 -0 0</pose>
+                <mass>0.389041</mass>
+                <inertia>
+                    <ixx>0.000698</ixx>
+                    <ixy>-7.9e-05</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.000117</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.000753</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_arm_1_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_arm_1_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_arm_1_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_arm_1_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_elbow_pitch_joint' type='revolute'>
+            <child>l_arm_2_link</child>
+            <parent>l_arm_1_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_arm_2_link'>
+            <pose frame=''>-0.002 0.258 0.189 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.003756 0.032656 0 0 -0 0</pose>
+                <mass>0.05173</mass>
+                <inertia>
+                    <ixx>3.6e-05</ixx>
+                    <ixy>5e-06</ixy>
+                    <ixz>0</ixz>
+                    <iyy>2.8e-05</iyy>
+                    <iyz>0</iyz>
+                    <izz>2.5e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_arm_2_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_arm_2_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_arm_2_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_arm_2_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_elbow_yaw_joint' type='revolute'>
+            <child>l_wrist_link</child>
+            <parent>l_arm_2_link</parent>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_wrist_link'>
+            <pose frame=''>0.02 0.318 0.214 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-1.9e-05 0.018288 -0.023718 0 -0 0</pose>
+                <mass>0.246735</mass>
+                <inertia>
+                    <ixx>0.000135</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>6.4e-05</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.000121</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_wrist_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_arm_3_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_wrist_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_arm_3_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <!-- Tangan Kanan -->
+        <joint name='r_shoulder_pitch_joint' type='revolute'>
+            <child>r_shoulder_link</child>
+            <parent>upper_body_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_shoulder_link'>
+            <pose frame=''>-0.002 -0.106 0.21 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-2e-06 -0.012421 -0.004084 0 -0 0</pose>
+                <mass>0.065396</mass>
+                <inertia>
+                    <ixx>1.9e-05</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>4.5e-05</iyy>
+                    <iyz>3e-06</iyz>
+                    <izz>4.4e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_shoulder_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_shoulder_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_shoulder_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_shoulder_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_shoulder_roll_joint' type='revolute'>
+            <child>r_arm_1_link</child>
+            <parent>r_shoulder_link</parent>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_arm_1_link'>
+            <pose frame=''>0.023 -0.139 0.189 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.027884 -0.046707 0 0 -0 0</pose>
+                <mass>0.389041</mass>
+                <inertia>
+                    <ixx>0.000698</ixx>
+                    <ixy>7.9e-05</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.000117</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.000753</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_arm_1_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_arm_1_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_arm_1_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_arm_1_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_elbow_pitch_joint' type='revolute'>
+            <child>r_arm_2_link</child>
+            <parent>r_arm_1_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_arm_2_link'>
+            <pose frame=''>-0.002 -0.257 0.189 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.003756 -0.032656 0 0 -0 0</pose>
+                <mass>0.05173</mass>
+                <inertia>
+                    <ixx>3.6e-05</ixx>
+                    <ixy>-5e-06</ixy>
+                    <ixz>0</ixz>
+                    <iyy>2.8e-05</iyy>
+                    <iyz>0</iyz>
+                    <izz>2.5e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_arm_2_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_arm_2_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_arm_2_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_arm_2_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_elbow_yaw_joint' type='revolute'>
+            <child>r_wrist_link</child>
+            <parent>r_arm_2_link</parent>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_wrist_link'>
+            <pose frame=''>0.02 -0.317 0.214 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>1.9e-05 -0.018288 -0.023718 0 -0 0</pose>
+                <mass>0.246735</mass>
+                <inertia>
+                    <ixx>0.000135</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>6.4e-05</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.000121</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_wrist_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_arm_3_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_wrist_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_arm_3_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <!-- Kaki Kiri -->
+
+        <joint name='l_hip_yaw_joint' type='revolute'>
+            <child>l_hip_yaw_link</child>
+            <parent>base_link</parent>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_hip_yaw_link'>
+            <pose frame=''>0 0.055 -0.006 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.002613 0 -0.016031 0 -0 0</pose>
+                <mass>0.048671</mass>
+                <inertia>
+                    <ixx>2e-05</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>8.9e-05</iyy>
+                    <iyz>0</iyz>
+                    <izz>8e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_hip_yaw_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_hip_yaw_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_hip_yaw_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_hip_yaw_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_hip_roll_joint' type='revolute'>
+            <child>l_hip_roll_pitch_link</child>
+            <parent>l_hip_yaw_link</parent>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+        
+        <link name='l_hip_roll_pitch_link'>
+            <pose frame=''>0.048 0.055 -0.057 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.044841 0.000309 -0.015116 0 -0 0</pose>
+                <mass>0.49989</mass>
+                <inertia>
+                    <ixx>0.000223</ixx>
+                    <ixy>-3e-06</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.000443</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.000353</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_hip_roll_pitch_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_hip_roll_pitch_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_hip_roll_pitch_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_hip_roll_pitch_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_hip_pitch_joint' type='revolute'>
+            <child>l_thigh_back_link</child>
+            <parent>l_hip_roll_pitch_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_thigh_back_link'>
+            <pose frame=''>-0.018 0.08 -0.057 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.010643 -0.0245 -0.094743 0 -0 0</pose>
+                <mass>0.066363</mass>
+                <inertia>
+                    <ixx>0.000234</ixx>
+                    <ixy>0</ixy>
+                    <ixz>-1e-06</ixz>
+                    <iyy>0.000201</iyy>
+                    <iyz>0</iyz>
+                    <izz>3.9e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_thigh_back_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_thigh_back_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_thigh_back_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_thigh_back_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_hip_pitch_passive_joint' type='revolute'>
+            <child>l_thigh_front_link</child>
+            <parent>l_hip_roll_pitch_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_thigh_front_link'>
+            <pose frame=''>0.023 0.08 -0.057 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.012786 -0.02425 -0.095264 0 -0 0</pose>
+                <mass>0.078343</mass>
+                <inertia>
+                    <ixx>0.000258</ixx>
+                    <ixy>0</ixy>
+                    <ixz>-1e-05</ixz>
+                    <iyy>0.000222</iyy>
+                    <iyz>0</iyz>
+                    <izz>4.3e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_thigh_front_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_thigh_front_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_thigh_front_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_thigh_front_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_knee_passive_1_joint' type='revolute'>
+            <child>l_knee_link</child>
+            <parent>l_thigh_back_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <joint name='l_knee_passive_2_joint' type='revolute'>
+            <pose frame=''>0.041 0.000 0.000 0 -0 0</pose>
+            <child>l_knee_link</child>
+            <parent>l_thigh_front_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_knee_link'>
+            <pose frame=''>-0.018 0.08 -0.257 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.024965 -0.02825 -0.021475 0 -0 0</pose>
+                <mass>0.070233</mass>
+                <inertia>
+                    <ixx>5.2e-05</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>5.9e-05</iyy>
+                    <iyz>0</iyz>
+                    <izz>6e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_knee_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_knee_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_knee_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_knee_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_knee_passive_3_joint' type='revolute'>
+            <child>l_shank_back_link</child>
+            <parent>l_knee_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_shank_back_link'>
+            <pose frame=''>-0.018 0.08 -0.3 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.000818 -0.0245 -0.10579 0 -0 0</pose>
+                <mass>0.066363</mass>
+                <inertia>
+                    <ixx>0.000233</ixx>
+                    <ixy>0</ixy>
+                    <ixz>-1.7e-05</ixz>
+                    <iyy>0.000201</iyy>z
+                    <iyz>0</iyz>
+                    <izz>4e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_shank_back_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_shank_back_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_shank_back_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_shank_back_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_knee_passive_4_joint' type='revolute'>
+            <child>l_shank_front_link</child>
+            <parent>l_knee_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_shank_front_link'>
+            <pose frame=''>0.023 0.08 -0.3 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.012786 -0.02425 -0.104736 0 -0 0</pose>
+                <mass>0.078343</mass>
+                <inertia>
+                    <ixx>0.000258</ixx>
+                    <ixy>0</ixy>
+                    <ixz>1e-05</ixz>
+                    <iyy>0.000222</iyy>
+                    <iyz>0</iyz>
+                    <izz>4.3e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_shank_front_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_shank_front_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_shank_front_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_shank_front_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_ankle_pitch_joint' type='revolute'>
+            <child>l_ankle_roll_pitch_link</child>
+            <parent>l_shank_back_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <joint name='l_ankle_pitch_passive_joint' type='revolute'>
+            <pose frame=''>0.041 0.000 0.000 0 -0 0</pose>
+            <child>l_ankle_roll_pitch_link</child>
+            <parent>l_shank_front_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_ankle_roll_pitch_link'>
+            <pose frame=''>-0.018 0.08 -0.5 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.020911 -0.024188 -0.015111 0 -0 0</pose>
+                <mass>0.499767</mass>
+                <inertia>
+                    <ixx>0.000223</ixx>
+                    <ixy>-3e-06</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.000443</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.000353</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_ankle_roll_pitch_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_ankle_roll_pitch_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_ankle_roll_pitch_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_ankle_roll_pitch_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='l_ankle_roll_joint' type='revolute'>
+            <child>l_sole_link</child>
+            <parent>l_ankle_roll_pitch_link</parent>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='l_sole_link'>
+            <pose frame=''>0.048 0.055 -0.5 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.044948 0.01162 -0.047578 0 -0 0</pose>
+                <mass>0.241931</mass>
+                <inertia>
+                    <ixx>0.00029</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.000663</iyy>
+                    <iyz>-1e-05</iyz>
+                    <izz>0.000899</izz>
+                </inertia>
+            </inertial>
+            <collision name='l_sole_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/l_foot_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='l_sole_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/l_foot_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <!-- Kaki kanan -->
+        <joint name='r_hip_yaw_joint' type='revolute'>
+            <child>r_hip_yaw_link</child>
+            <parent>base_link</parent>
+            <axis>
+                <xyz>0 0 1</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_hip_yaw_link'>
+            <pose frame=''>0 -0.055 -0.006 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.002613 0 -0.016031 0 -0 0</pose>
+                <mass>0.048671</mass>
+                <inertia>
+                    <ixx>2e-05</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>8.9e-05</iyy>
+                    <iyz>0</iyz>
+                    <izz>8e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_hip_yaw_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_hip_yaw_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_hip_yaw_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_hip_yaw_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_hip_roll_joint' type='revolute'>
+            <child>r_hip_roll_pitch_link</child>
+            <parent>r_hip_yaw_link</parent>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_hip_roll_pitch_link'>
+            <pose frame=''>0.048 -0.055 -0.057 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.044841 0.000309 -0.015116 0 -0 0</pose>
+                <mass>0.49989</mass>
+                <inertia>
+                    <ixx>0.000223</ixx>
+                    <ixy>-3e-06</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.000443</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.000353</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_hip_roll_pitch_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_hip_roll_pitch_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_hip_roll_pitch_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_hip_roll_pitch_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_hip_pitch_joint' type='revolute'>
+            <child>r_thigh_back_link</child>
+            <parent>r_hip_roll_pitch_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_thigh_back_link'>
+            <pose frame=''>-0.018 -0.03 -0.057 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.010643 -0.0245 -0.094743 0 -0 0</pose>
+                <mass>0.066363</mass>
+                <inertia>
+                    <ixx>0.000234</ixx>
+                    <ixy>0</ixy>
+                    <ixz>-1e-06</ixz>
+                    <iyy>0.000201</iyy>
+                    <iyz>0</iyz>
+                    <izz>3.9e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_thigh_back_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_thigh_back_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_thigh_back_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_thigh_back_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_hip_pitch_passive_joint' type='revolute'>
+            <child>r_thigh_front_link</child>
+            <parent>r_hip_roll_pitch_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_thigh_front_link'>
+            <pose frame=''>0.023 -0.03 -0.057 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.012786 -0.02425 -0.095264 0 -0 0</pose>
+                <mass>0.078343</mass>
+                <inertia>
+                    <ixx>0.000258</ixx>
+                    <ixy>0</ixy>
+                    <ixz>-1e-05</ixz>
+                    <iyy>0.000222</iyy>
+                    <iyz>0</iyz>
+                    <izz>4.3e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_thigh_front_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_thigh_front_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_thigh_front_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_thigh_front_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_knee_passive_1_joint' type='revolute'>
+            <child>r_knee_link</child>
+            <parent>r_thigh_back_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <joint name='r_knee_passive_2_joint' type='revolute'>
+            <pose frame=''>0.041 0.000 0.000 0 -0 0</pose>
+            <child>r_knee_link</child>
+            <parent>r_thigh_front_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_knee_link'>
+            <pose frame=''>-0.018 -0.03 -0.257 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.024965 -0.02825 -0.021475 0 -0 0</pose>
+                <mass>0.070233</mass>
+                <inertia>
+                    <ixx>5.2e-05</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>5.9e-05</iyy>
+                    <iyz>0</iyz>
+                    <izz>6e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_knee_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_knee_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_knee_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_knee_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_knee_passive_3_joint' type='revolute'>
+            <child>r_shank_back_link</child>
+            <parent>r_knee_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_shank_back_link'>
+            <pose frame=''>-0.018 -0.03 -0.3 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.000818 -0.0245 -0.10579 0 -0 0</pose>
+                <mass>0.066363</mass>
+                <inertia>
+                    <ixx>0.000233</ixx>
+                    <ixy>0</ixy>
+                    <ixz>-1.7e-05</ixz>
+                    <iyy>0.000201</iyy>
+                    <iyz>0</iyz>
+                    <izz>4e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_shank_back_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_shank_back_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_shank_back_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_shank_back_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_knee_passive_4_joint' type='revolute'>
+            <child>r_shank_front_link</child>
+            <parent>r_knee_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_shank_front_link'>
+            <pose frame=''>0.023 -0.03 -0.3 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.012786 -0.02425 -0.104736 0 -0 0</pose>
+                <mass>0.078343</mass>
+                <inertia>
+                    <ixx>0.000258</ixx>
+                    <ixy>0</ixy>
+                    <ixz>1e-05</ixz>
+                    <iyy>0.000222</iyy>
+                    <iyz>0</iyz>
+                    <izz>4.3e-05</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_shank_front_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_shank_front_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_shank_front_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_shank_front_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_ankle_pitch_joint' type='revolute'>
+            <child>r_ankle_roll_pitch_link</child>
+            <parent>r_shank_back_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <joint name='r_ankle_pitch_passive_joint' type='revolute'>
+            <pose frame=''>0.041 0.000 0.000 0 -0 0</pose>
+            <child>r_ankle_roll_pitch_link</child>
+            <parent>r_shank_front_link</parent>
+            <axis>
+                <xyz>0 1 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>1000</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_ankle_roll_pitch_link'>
+            <pose frame=''>-0.018 -0.03 -0.5 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>0.020911 -0.024188 -0.015111 0 -0 0</pose>
+                <mass>0.499767</mass>
+                <inertia>
+                    <ixx>0.000223</ixx>
+                    <ixy>-3e-06</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.000443</iyy>
+                    <iyz>0</iyz>
+                    <izz>0.000353</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_ankle_roll_pitch_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_ankle_roll_pitch_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_ankle_roll_pitch_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_ankle_roll_pitch_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+
+        <joint name='r_ankle_roll_joint' type='revolute'>
+            <child>r_sole_link</child>
+            <parent>r_ankle_roll_pitch_link</parent>
+            <axis>
+                <xyz>1 0 0</xyz>
+                <limit>
+                    <lower>-1</lower>
+                    <upper>1</upper>
+                    <effort>0</effort>
+                    <velocity>6.5</velocity>
+                </limit>
+                <dynamics>
+                    <damping>0.1</damping>
+                    <friction>0</friction>
+                    <spring_reference>0</spring_reference>
+                    <spring_stiffness>0</spring_stiffness>
+                </dynamics>
+                <use_parent_model_frame>1</use_parent_model_frame>
+            </axis>
+        </joint>
+
+        <link name='r_sole_link'>
+            <pose frame=''>0.048 -0.055 -0.5 0 -0 0</pose>
+            <inertial>
+                <pose frame=''>-0.044948 -0.01162 -0.047578 0 -0 0</pose>
+                <mass>0.241931</mass>
+                <inertia>
+                    <ixx>0.00029</ixx>
+                    <ixy>0</ixy>
+                    <ixz>0</ixz>
+                    <iyy>0.000663</iyy>
+                    <iyz>1e-05</iyz>
+                    <izz>0.000899</izz>
+                </inertia>
+            </inertial>
+            <collision name='r_sole_link_collision'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/collision/r_foot_collision.stl</uri>
+                    </mesh>
+                </geometry>
+            </collision>
+            <visual name='r_sole_link_visual'>
+                <pose frame=''>0 0 0 0 -0 0</pose>
+                <geometry>
+                    <mesh>
+                    <scale>1 1 1</scale>
+                    <uri>model://robinion/meshes/visual/r_foot_visual.stl</uri>
+                    </mesh>
+                </geometry>
+            </visual>
+        </link>
+    </model>
+</sdf>

@@ -1,0 +1,4 @@
+<launch>
+    <!-- <rosparam command="load" file="$(find robinion_kinematics_solver)/config/kinematics_solver_param.yaml" /> -->
+    <node name="robinion_motion_player" pkg="robinion_motion_player" type="motion_player_node.py" output="screen"/>
+</launch>

@@ -1,0 +1,4 @@
+<launch>
+    <rosparam command="load" file="$(find robinion_walking_module)/config/walking_param.yaml" />
+    <node name="robinion_walking_module" pkg="robinion_walking_module" type="walking_module_node.py" output="screen"/>
+</launch>

@@ -1,0 +1,737 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">	
+
+	<!-- <xacro:property name="pi" value="3.141592654" /> -->
+
+	<xacro:macro name="robinion_l_leg" params="parent">
+		<joint name="l_hip_yaw_joint" type="revolute">
+			<parent link="${parent}"/>
+			<child link="l_hip_yaw_link"/>
+			<origin xyz="0.000 0.055 -0.006" rpy="0 0 0"/>
+			<axis xyz="0 0 1"/>
+			<limit velocity="3.14" effort="10.6" lower="${-pi*0.9}" upper="${pi*0.9}" />
+			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_hip_yaw_joint" />
+	
+		<link name="l_hip_yaw_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_hip_yaw_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_hip_yaw_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.002613 0.000000 -0.016031" rpy="0.00 0.00 0.00"/>
+				<mass value="0.048671"/>
+				<inertia ixx="0.000020" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000089" iyz="0.000000"
+						 izz="0.000080" />
+			</inertial>
+		</link>
+	
+		<joint name="l_hip_roll_joint" type="revolute">
+			<parent link="l_hip_yaw_link"/>
+			<child link="l_hip_roll_pitch_link"/>
+			<origin xyz="0.048 0.000 -0.051" rpy="0 0 0"/>
+			<axis xyz="1 0 0"/>
+			<limit velocity="4.08" effort="9.90" lower="${-pi*0.25}" upper="${pi*0.25}" />
+			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_hip_roll_joint" />
+	
+		<link name="l_hip_roll_pitch_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_hip_roll_pitch_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_hip_roll_pitch_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.044841 0.000309 -0.015116" rpy="0.00 0.00 0.00"/>
+				<mass value="0.499890"/>
+				<inertia ixx="0.000223" ixy="-0.000003" ixz="0.000000"
+						 iyy="0.000443" iyz="0.000000"
+						 izz="0.000353" />
+			</inertial>
+		</link>
+	
+		<joint name="l_hip_pitch_joint" type="revolute">
+			<parent link="l_hip_roll_pitch_link"/>
+			<child link="l_thigh_back_link"/>
+			<origin xyz="-0.066 0.025 0.000" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="4.08" effort="9.90" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_hip_pitch_joint" />
+	
+		<link name="l_thigh_back_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_thigh_back_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_thigh_back_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.010643 -0.024500 -0.094743" rpy="0.00 0.00 0.00"/>
+				<mass value="0.066363"/>
+				<inertia ixx="0.000234" ixy="0.000000" ixz="-0.000001"
+						 iyy="0.000201" iyz="0.000000"
+						 izz="0.000039" />
+			</inertial>
+		</link>
+		
+		<!-- paha depan -->
+		<joint name="l_hip_pitch_passive_1_joint" type="revolute">
+			<parent link="l_hip_roll_pitch_link"/>
+			<child link="l_thigh_front_link"/>
+			<origin xyz="-0.025 0.025 0.000" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="6.5" effort="5" lower="${-pi}" upper="${pi}" />
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_hip_pitch_passive_1_joint" />
+	
+		<link name="l_thigh_front_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_thigh_front_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_thigh_front_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.012786 -0.024250 -0.095264" rpy="0.00 0.00 0.00"/>
+				<mass value="0.078343"/>
+				<inertia ixx="0.000258" ixy="0.000000" ixz="-0.000010"
+						 iyy="0.000222" iyz="0.000000"
+						 izz="0.000043" />
+			</inertial>
+		</link>
+	
+		<!-- ini nanti diganti dengan parallel joint -->
+		<joint name="l_knee_passive_1_joint" type="revolute">
+			<parent link="l_thigh_back_link"/>
+			<child link="l_knee_link"/>
+			<origin xyz="0.000 0.000 -0.200" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="6.5" effort="5" lower="${-pi}" upper="${pi}" />
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_knee_passive_1_joint" />
+	
+		<gazebo>
+			<joint name='l_knee_passive_2_joint' type='revolute'>
+				<pose frame=''>0.041 0.000 0.000 0 -0 0</pose>
+				<child>l_knee_link</child>
+				<parent>l_thigh_front_link</parent>
+				<axis>
+					<xyz>0 1 0</xyz>
+					<limit>
+						<lower>-3.14</lower>
+						<upper>3.14</upper>
+						<effort>5</effort>
+						<velocity>6.5</velocity>
+					</limit>
+					<dynamics>
+						<damping>0.1</damping>
+						<friction>0</friction>
+						<spring_reference>0</spring_reference>
+						<spring_stiffness>0</spring_stiffness>
+					</dynamics>
+					<use_parent_model_frame>1</use_parent_model_frame>
+				</axis>
+			</joint>
+		</gazebo>
+	
+		<link name="l_knee_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_knee_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_knee_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.024965 -0.028250 -0.021475" rpy="0.00 0.00 0.00"/>
+				<mass value="0.070233"/>
+				<inertia ixx="0.000052" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000059" iyz="0.000000"
+						 izz="0.000060" />
+			</inertial>
+		</link>
+	
+		<joint name="l_knee_passive_3_joint" type="revolute">
+			<parent link="l_knee_link"/>
+			<child link="l_shank_back_link"/>
+			<origin xyz="0.000 0.000 -0.043" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="6.5" effort="5" lower="${-pi}" upper="${pi}" />
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_knee_passive_3_joint" />
+	
+		<link name="l_shank_back_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_shank_back_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_shank_back_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.000818 -0.024500 -0.105790" rpy="0.00 0.00 0.00"/>
+				<mass value="0.066363"/>
+				<inertia ixx="0.000233" ixy="0.000000" ixz="-0.000017"
+						 iyy="0.000201" iyz="0.000000"
+						 izz="0.000040" />
+			</inertial>
+		</link>
+	
+		<!-- knee depan -->
+		<joint name="l_knee_passive_4_joint" type="revolute">
+			<parent link="l_knee_link"/>
+			<child link="l_shank_front_link"/>
+			<origin xyz="0.041 0.000 -0.043" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="6.5" effort="5" lower="${-pi}" upper="${pi}" />
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_knee_passive_4_joint" />
+	
+		<link name="l_shank_front_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_shank_front_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_shank_front_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.012786 -0.024250 -0.104736" rpy="0.00 0.00 0.00"/>
+				<mass value="0.078343"/>
+				<inertia ixx="0.000258" ixy="0.000000" ixz="0.000010"
+						 iyy="0.000222" iyz="0.000000"
+						 izz="0.000043" />
+			</inertial>
+		</link>
+	
+		<joint name="l_ankle_pitch_joint" type="revolute">
+			<parent link="l_shank_back_link"/>
+			<child link="l_ankle_roll_pitch_link"/>
+			<origin xyz="0.000 0.000 -0.200" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="4.08" effort="9.90" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_ankle_pitch_joint" />
+	
+		<gazebo>
+			<joint name='l_ankle_pitch_passive_joint' type='revolute'>
+				<pose frame=''>0.041 0.000 0.000 0 -0 0</pose>
+				<child>l_ankle_roll_pitch_link</child>
+				<parent>l_shank_front_link</parent>
+				<axis>
+					<xyz>0 1 0</xyz>
+					<limit>
+						<lower>-3.14</lower>
+						<upper>3.14</upper>
+						<effort>5</effort>
+						<velocity>6.5</velocity>
+					</limit>
+					<dynamics>
+						<damping>0.1</damping>
+						<friction>0</friction>
+						<spring_reference>0</spring_reference>
+						<spring_stiffness>0</spring_stiffness>
+					</dynamics>
+					<use_parent_model_frame>1</use_parent_model_frame>
+				</axis>
+			</joint>
+		</gazebo>
+	
+		<link name="l_ankle_roll_pitch_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_ankle_roll_pitch_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_ankle_roll_pitch_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.020911 -0.024188 -0.015111" rpy="0.00 0.00 0.00"/>
+				<mass value="0.499767"/>
+				<inertia ixx="0.000223" ixy="-0.000003" ixz="0.000000"
+						 iyy="0.000443" iyz="0.000000"
+						 izz="0.000353" />
+			</inertial>
+		</link>
+	
+		<joint name="l_ankle_roll_joint" type="revolute">
+			<parent link="l_ankle_roll_pitch_link"/>
+			<child link="l_foot_link"/>
+			<origin xyz="0.066 -0.025 0.000" rpy="0 0 0"/>
+			<axis xyz="1 0 0"/>
+			<limit velocity="4.08" effort="9.90" lower="${-pi*0.25}" upper="${pi*0.25}" />
+			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="l_ankle_roll_joint" />
+	
+		<link name="l_foot_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_foot_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_foot_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.044948 0.011620 -0.047578" rpy="0.00 0.00 0.00"/>
+				<mass value="0.241931"/>
+				<inertia ixx="0.000290" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000663" iyz="-0.000010"
+						 izz="0.000899" />
+			</inertial>
+		</link>
+
+		<joint name="l_sole_joint_joint" type="fixed">
+			<parent link="l_foot_link"/>
+			<child link="l_sole"/>
+			<origin xyz="-0.045 0.000 -0.053" rpy="0 0 0"/>
+		</joint>
+
+		<link name="l_sole">
+		</link>
+
+	</xacro:macro>
+
+	<xacro:macro name="robinion_r_leg" params="parent">
+		<joint name="r_hip_yaw_joint" type="revolute">
+			<parent link="${parent}"/>
+			<child link="r_hip_yaw_link"/>
+			<origin xyz="0.000 -0.055 -0.006" rpy="0 0 0"/>
+			<axis xyz="0 0 1"/>
+			<limit velocity="3.14" effort="10.6" lower="${-pi*0.9}" upper="${pi*0.9}" />
+			<!-- <limit velocity="3.14" effort="1000" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_hip_yaw_joint" />
+	
+		<link name="r_hip_yaw_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_hip_yaw_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_hip_yaw_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.002613 0.000000 -0.016031" rpy="0.00 0.00 0.00"/>
+				<mass value="0.048671"/>
+				<inertia ixx="0.000020" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000089" iyz="0.000000"
+						 izz="0.000080" />
+			</inertial>
+		</link>
+	
+		<joint name="r_hip_roll_joint" type="revolute">
+			<parent link="r_hip_yaw_link"/>
+			<child link="r_hip_roll_pitch_link"/>
+			<origin xyz="0.048 0.000 -0.051" rpy="0 0 0"/>
+			<axis xyz="1 0 0"/>
+			<limit velocity="4.08" effort="9.90" lower="${-pi*0.25}" upper="${pi*0.25}" />
+			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_hip_roll_joint" />
+	
+		<link name="r_hip_roll_pitch_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_hip_roll_pitch_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_hip_roll_pitch_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.044841 0.000309 -0.015116" rpy="0.00 0.00 0.00"/>
+				<mass value="0.499890"/>
+				<inertia ixx="0.000223" ixy="-0.000003" ixz="0.000000"
+						 iyy="0.000443" iyz="0.000000"
+						 izz="0.000353" />
+			</inertial>
+		</link>
+	
+		<joint name="r_hip_pitch_joint" type="revolute">
+			<parent link="r_hip_roll_pitch_link"/>
+			<child link="r_thigh_back_link"/>
+			<origin xyz="-0.066 0.025 0.000" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="4.08" effort="9.90" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_hip_pitch_joint" />
+	
+		<link name="r_thigh_back_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_thigh_back_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_thigh_back_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.010643 -0.024500 -0.094743" rpy="0.00 0.00 0.00"/>
+				<mass value="0.066363"/>
+				<inertia ixx="0.000234" ixy="0.000000" ixz="-0.000001"
+						 iyy="0.000201" iyz="0.000000"
+						 izz="0.000039" />
+			</inertial>
+		</link>
+	
+		<!-- paha depan -->
+		<joint name="r_hip_pitch_passive_1_joint" type="revolute">
+			<parent link="r_hip_roll_pitch_link"/>
+			<child link="r_thigh_front_link"/>
+			<origin xyz="-0.025 0.025 0.000" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="6.5" effort="5" lower="${-pi}" upper="${pi}" />
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_hip_pitch_passive_1_joint" />
+	
+		<link name="r_thigh_front_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_thigh_front_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_thigh_front_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.012786 -0.024250 -0.095264" rpy="0.00 0.00 0.00"/>
+				<mass value="0.078343"/>
+				<inertia ixx="0.000258" ixy="0.000000" ixz="-0.000010"
+						 iyy="0.000222" iyz="0.000000"
+						 izz="0.000043" />
+			</inertial>
+		</link>
+	
+		<!-- ini nanti diganti dengan parallel joint -->
+	
+		<joint name="r_knee_passive_1_joint" type="revolute">
+			<parent link="r_thigh_back_link"/>
+			<child link="r_knee_link"/>
+			<origin xyz="0.000 0.000 -0.200" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="6.5" effort="5" lower="${-pi}" upper="${pi}" />
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_knee_passive_1_joint" />
+	
+		<gazebo>
+			<joint name='r_knee_passive_2_joint' type='revolute'>
+				<pose frame=''>0.041 0.000 0.000 0 -0 0</pose>
+				<child>r_knee_link</child>
+				<parent>r_thigh_front_link</parent>
+				<axis>
+					<xyz>0 1 0</xyz>
+					<limit>
+						<lower>-3.14</lower>
+						<upper>3.14</upper>
+						<effort>5</effort>
+						<velocity>6.5</velocity>
+					</limit>
+					<dynamics>
+						<damping>0.1</damping>
+						<friction>0</friction>
+						<spring_reference>0</spring_reference>
+						<spring_stiffness>0</spring_stiffness>
+					</dynamics>
+					<use_parent_model_frame>1</use_parent_model_frame>
+				</axis>
+			</joint>
+		</gazebo>
+	
+		<link name="r_knee_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_knee_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_knee_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.024965 -0.028250 -0.021475" rpy="0.00 0.00 0.00"/>
+				<mass value="0.070233"/>
+				<inertia ixx="0.000052" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000059" iyz="0.000000"
+						 izz="0.000060" />
+			</inertial>
+		</link>
+	
+		<joint name="r_knee_passive_3_joint" type="revolute">
+			<parent link="r_knee_link"/>
+			<child link="r_shank_back_link"/>
+			<origin xyz="0.000 0.000 -0.043" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="6.5" effort="5" lower="${-pi}" upper="${pi}" />
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_knee_passive_3_joint" />
+	
+		<link name="r_shank_back_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_shank_back_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_shank_back_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.000818 -0.024500 -0.105790" rpy="0.00 0.00 0.00"/>
+				<mass value="0.066363"/>
+				<inertia ixx="0.000233" ixy="0.000000" ixz="-0.000017"
+						 iyy="0.000201" iyz="0.000000"
+						 izz="0.000040" />
+			</inertial>
+		</link>
+	
+		<!-- knee depan -->
+		<joint name="r_knee_passive_4_joint" type="revolute">
+			<parent link="r_knee_link"/>
+			<child link="r_shank_front_link"/>
+			<origin xyz="0.041 0.000 -0.043" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="6.5" effort="5" lower="${-pi}" upper="${pi}" />
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_knee_passive_4_joint" />
+	
+		<link name="r_shank_front_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_shank_front_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_shank_front_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.012786 -0.024250 -0.104736" rpy="0.00 0.00 0.00"/>
+				<mass value="0.078343"/>
+				<inertia ixx="0.000258" ixy="0.000000" ixz="0.000010"
+						 iyy="0.000222" iyz="0.000000"
+						 izz="0.000043" />
+			</inertial>
+		</link>
+	
+		<joint name="r_ankle_pitch_joint" type="revolute">
+			<parent link="r_shank_back_link"/>
+			<child link="r_ankle_roll_pitch_link"/>
+			<origin xyz="0.000 0.000 -0.200" rpy="0 0 0"/>
+			<axis xyz="0 1 0"/>
+			<limit velocity="4.08" effort="9.90" lower="${-pi*0.5}" upper="${pi*0.5}" />
+			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_ankle_pitch_joint" />
+	
+		<link name="r_ankle_roll_pitch_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_ankle_roll_pitch_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_ankle_roll_pitch_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.020911 -0.024188 -0.015111" rpy="0.00 0.00 0.00"/>
+				<mass value="0.499767"/>
+				<inertia ixx="0.000223" ixy="-0.000003" ixz="0.000000"
+						 iyy="0.000443" iyz="0.000000"
+						 izz="0.000353" />
+			</inertial>
+		</link>
+	
+		<joint name="r_ankle_roll_joint" type="revolute">
+			<parent link="r_ankle_roll_pitch_link"/>
+			<child link="r_foot_link"/>
+			<origin xyz="0.066 -0.025 0.000" rpy="0 0 0"/>
+			<axis xyz="1 0 0"/>
+			<limit velocity="4.08" effort="9.90" lower="${-pi*0.25}" upper="${pi*0.25}" />
+			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
+			<dynamics damping="0.1" friction="0.0" />
+			<implicitSpringDamper>True</implicitSpringDamper>
+		</joint>
+		<xacro:insert_transmission name="r_ankle_roll_joint" />
+	
+		<gazebo>
+			<joint name='r_ankle_pitch_passive_joint' type='revolute'>
+				<pose frame=''>0.041 0.000 0.000 0 -0 0</pose>
+				<child>r_ankle_roll_pitch_link</child>
+				<parent>r_shank_front_link</parent>
+				<axis>
+					<xyz>0 1 0</xyz>
+					<limit>
+						<lower>-3.14</lower>
+						<upper>3.14</upper>
+						<effort>5</effort>
+						<velocity>6.5</velocity>
+					</limit>
+					<dynamics>
+						<damping>0.1</damping>
+						<friction>0</friction>
+						<spring_reference>0</spring_reference>
+						<spring_stiffness>0</spring_stiffness>
+					</dynamics>
+					<use_parent_model_frame>1</use_parent_model_frame>
+				</axis>
+			</joint>
+		</gazebo>
+	
+		<link name="r_foot_link">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_foot_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_foot_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="-0.044948 -0.011620 -0.047578" rpy="0.00 0.00 0.00"/>
+				<mass value="0.241931"/>
+				<inertia ixx="0.000290" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000663" iyz="0.000010"
+						 izz="0.000899" />
+			</inertial>
+		</link>
+
+		<joint name="r_sole_joint_joint" type="fixed">
+			<parent link="r_foot_link"/>
+			<child link="r_sole"/>
+			<origin xyz="-0.045 0.000 -0.053" rpy="0 0 0"/>
+		</joint>
+
+		<link name="r_sole">
+		</link>
+
+	</xacro:macro>
+
+</robot>

@@ -1,0 +1,4 @@
+<launch>
+    <!-- <rosparam command="load" file="$(find robinion_kinematics_solver)/config/kinematics_solver_param.yaml" /> -->
+    <node name="robinion_manipulation_module" pkg="robinion_manipulation_module" type="manipulation_module_node.py" output="screen"/>
+</launch>

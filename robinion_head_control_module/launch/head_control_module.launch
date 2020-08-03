@@ -1,0 +1,3 @@
+<launch>
+    <node name="robinion_head_control_module" pkg="robinion_head_control_module" type="head_control_module_node.py" output="screen"/>
+</launch>
