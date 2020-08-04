@@ -66,7 +66,7 @@ class ForwardKinematics(KinematicsSolver):
         self.leg_kinematics_solver = LegKinematics()
 
     def init_kdl_chain(self):
-        (ok, tree) = kdl_parser.treeFromParam(self.urdf_string)
+        (ok, tree) = kdl_parser.treeFromString(self.urdf_string)
         if not ok:
             rospy.logerr("Failed parsing URDF")
 
