@@ -54,6 +54,7 @@ CATKIN_IGNORE
 log.txt
 
 # Python
+__pycache__/
 
 # Dependencies
 
