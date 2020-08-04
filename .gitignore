@@ -50,10 +50,16 @@ qtcreator-*
 # Catkin custom files
 CATKIN_IGNORE
 
+# Micro log file
+log.txt
+
+# Python
+
+# Dependencies
+
 /DynamixelSDK
-/kdl_parser-1.13.1
-/open_cr_module
-/robotis_math
+/kdl_parser-1.13.2
+/ROBOTIS-Math
 /ROBOTIS-Framework
 /ROBOTIS-Framework-msgs
 /urdf_parser_py-0.4.3
