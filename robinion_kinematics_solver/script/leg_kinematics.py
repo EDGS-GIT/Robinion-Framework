@@ -175,6 +175,56 @@ class LegKinematics():
 
     # 0 left
     # 1 right
+    # def leg_ik(self, pose, leg=0):
+    #     if leg == 0:
+    #         self.D = self.crotch_to_hip_yaw
+    #     else:
+    #         self.D = -self.crotch_to_hip_yaw
+
+    #     x = pose.position.x
+    #     y = pose.position.y
+    #     z = pose.position.z
+    #     (roll, pitch, yaw) = euler_from_quaternion ([pose.orientation.x, pose.orientation.y,
+    #                                                  pose.orientation.z, pose.orientation.w])
+        
+    #     x_from_upper_hip = (x - 0)
+    #     y_from_upper_hip = (y - self.D)
+    #     z_from_upper_hip = (z + self.E + self.F)
+
+    #     xa = x_from_upper_hip
+    #     ya_1 = xa * np.tan(yaw)
+    #     xb_1 = xa / np.cos(yaw)
+    #     beta = np.pi/2 - yaw
+    #     ya_2 = y_from_upper_hip - ya_1
+    #     yb = ya_2 * np.sin(beta)
+    #     xb_2 = yb / np.tan(beta)
+    #     xb = xb_1 + xb_2
+
+    #     x_from_hip_yaw = xb
+    #     y_from_hip_yaw = yb
+    #     z_from_hip_yaw = z_from_upper_hip
+
+    #     C = np.sqrt(x_from_hip_yaw**2 + y_from_hip_yaw**2 + z_from_hip_yaw**2)
+    #     qx = np.arcsin(x_from_hip_yaw / C)
+    #     qb = np.arccos((C/2) / self.A)
+        
+    #     qy = np.arctan2(y_from_hip_yaw,np.sign(z_from_hip_yaw)*z_from_hip_yaw)
+    #     qc = np.pi - (qb*2)
+    #     qz = np.arcsin(abs(z_from_hip_yaw)/C)
+    #     qa = qb
+
+    #     q_hip_yaw = yaw
+    #     q_hip_roll = qy
+    #     q_hip_pitch = -(qx + qb)
+    #     q_ankle_roll = -qy
+    #     q_knee = np.pi - qc # useless
+    #     if xb >= 0:
+    #         q_ankle_pitch = -(np.pi/2 - (np.pi - (qz + qa)))
+    #     else:
+    #         q_ankle_pitch = (qz-qa-(np.pi/2))
+        
+    #     return [q_hip_yaw, q_hip_roll, q_hip_pitch, q_ankle_pitch, q_ankle_roll]
+
     def leg_ik(self, pose, leg=0):
         if leg == 0:
             self.D = self.crotch_to_hip_yaw
@@ -192,36 +242,32 @@ class LegKinematics():
         z_from_upper_hip = (z + self.E + self.F)
 
         xa = x_from_upper_hip
-        ya_1 = xa * np.tan(yaw)
-        xb_1 = xa / np.cos(yaw)
+        ya = xa * np.tan(yaw)
         beta = np.pi/2 - yaw
-        ya_2 = y_from_upper_hip - ya_1
-        yb = ya_2 * np.sin(beta)
-        xb_2 = yb / np.tan(beta)
-        xb = xb_1 + xb_2
-
+        yb = (y_from_upper_hip - ya)
+        gamma = np.pi/2 - beta
+        xb = xa / np.cos(yaw) + np.sin(gamma) * (y_from_upper_hip - ya)
         x_from_hip_yaw = xb
         y_from_hip_yaw = yb
         z_from_hip_yaw = z_from_upper_hip
-
-        C = np.sqrt(x_from_hip_yaw**2 + y_from_hip_yaw**2 + z_from_hip_yaw**2)
-        qx = np.arcsin(x_from_hip_yaw / C)
-        qb = np.arccos((C/2) / self.A)
+        # Inverse kinematics
+        # Step 1 mencari C
+        C = np.sqrt(xb**2 + yb**2 + z_from_hip_yaw**2)
         
-        qy = np.arctan2(y_from_hip_yaw,np.sign(z_from_hip_yaw)*z_from_hip_yaw)
-        qc = np.pi - (qb*2)
-        qz = np.arcsin(abs(z_from_hip_yaw)/C)
-        qa = qb
-
+        zb = np.sqrt(yb**2 + z_from_hip_yaw**2)
+        zc = np.sqrt(xb**2 + z_from_hip_yaw**2)
+        zeta = np.arctan2(yb, zc)
+        Cb = np.sign(xb)*np.sqrt(C**2 - zb**2)
+        # Konfigurasi joint
         q_hip_yaw = yaw
-        q_hip_roll = qy
-        q_hip_pitch = -(qx + qb)
-        q_ankle_roll = -qy
-        q_knee = np.pi - qc # useless
-        if xb >= 0:
-            q_ankle_pitch = -(np.pi/2 - (np.pi - (qz + qa)))
-        else:
-            q_ankle_pitch = (qz-qa-(np.pi/2))
+        # q_hip_roll = np.arctan2(yb, C)
+        q_hip_roll = zeta 
+        # q_hip_roll = 0.0
+        q_hip_pitch = -(np.arctan2(Cb, np.sign(z_from_hip_yaw)*z_from_hip_yaw) + np.arccos((C/2)/self.A))
+        q_knee = np.pi-(2*(np.arcsin((C/2)/self.A)))
+        # q_knee = 0.1
+        q_ankle_pitch = np.pi/2 - (np.arctan2(np.sign(z_from_hip_yaw)*z_from_hip_yaw, Cb) + np.arccos((C/2)/self.A))
+        q_ankle_roll = -q_hip_roll
         
         return [q_hip_yaw, q_hip_roll, q_hip_pitch, q_ankle_pitch, q_ankle_roll]
     
