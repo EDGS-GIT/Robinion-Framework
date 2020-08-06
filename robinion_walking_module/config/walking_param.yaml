@@ -9,12 +9,12 @@ gait_param:
     max_va: 45
   lipm_height: 0.45 # Constant CoM height for walking
   gazebo:
-    t_step: 0.3
+    t_step: 0.45
     control_cycle: 0.01
-    dsp_ratio: 0.4
+    dsp_ratio: 0.55
     swing_foot_height: 0.035 # Maximum swing foot height
     support_x: 0.000 # Offset body in x-axis
-    support_y: 0.05 # Offest sole in y-axis
+    support_y: 0.025 # Offest sole in y-axis
     body_tilt: 0 # Body tilt
   robot:
     t_step: 0.25
