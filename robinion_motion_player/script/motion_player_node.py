@@ -115,9 +115,9 @@ class MotionPlayer():
         # Convert pose to frame
         pelvis_frame = pm.fromMsg(pelvis_pose)
         # Set left sole frame
-        l_sole_frame = kdl.Frame(kdl.Rotation.RPY(0,0,0), kdl.Vector(0, (self.rb_kinematics.HIP_TO_CROTCH+0.05), 0))
+        l_sole_frame = kdl.Frame(kdl.Rotation.RPY(0,0,0), kdl.Vector(0, (self.rb_kinematics.HIP_TO_CROTCH), 0))
         # Set right sole frame
-        r_sole_frame = kdl.Frame(kdl.Rotation.RPY(0,0,0), kdl.Vector(0, -(self.rb_kinematics.HIP_TO_CROTCH+0.05), 0))
+        r_sole_frame = kdl.Frame(kdl.Rotation.RPY(0,0,0), kdl.Vector(0, -(self.rb_kinematics.HIP_TO_CROTCH), 0))
 
         pelvis_frame_inv = pelvis_frame.Inverse()
         l_sole_from_pelvis = pelvis_frame_inv * l_sole_frame
