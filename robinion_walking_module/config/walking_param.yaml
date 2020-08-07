@@ -1,10 +1,10 @@
 gait_param:
   # Allowed minimum and maximum gait parameter
   limit:
-    min_vx: -0.05
-    max_vx: 0.05
-    min_vy: -0.015
-    max_vy: 0.015
+    min_vx: -0.1
+    max_vx: 0.1
+    min_vy: -0.03
+    max_vy: 0.03
     min_va: -45
     max_va: 45
   lipm_height: 0.45 # Constant CoM height for walking
@@ -13,7 +13,7 @@ gait_param:
     control_cycle: 0.01
     dsp_ratio: 0.55
     swing_foot_height: 0.035 # Maximum swing foot height
-    support_x: 0.000 # Offset body in x-axis
+    support_x: 0.02 # Offset body in x-axis
     support_y: 0.025 # Offest sole in y-axis
     body_tilt: 0 # Body tilt
   robot:
@@ -21,6 +21,6 @@ gait_param:
     control_cycle: 0.01
     dsp_ratio: 0.2
     swing_foot_height: 0.025 # di lua ini step height
-    support_x: 0.03 # offset body kedepan
+    support_x: 0.1 # offset body kedepan
     support_y: 0.01 # offset kaki ke samping
     body_tilt: 15 # kemiringan body dalam degree
