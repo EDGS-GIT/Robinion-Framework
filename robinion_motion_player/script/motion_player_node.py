@@ -110,14 +110,18 @@ class MotionPlayer():
         self.play_motion_as.set_succeeded(result)
 
     def set_pelvis_pose(self, pelvis_pose, movement_time=1.0, dt=0.01):
+        support_x = rospy.get_param("/gait_param/gazebo/support_x")
+        support_y = rospy.get_param("/gait_param/gazebo/support_y")
+        # offset in x-axis
+        pelvis_pose.position.x = pelvis_pose.position.x + support_x
         pelvis_q = [pelvis_pose.orientation.x, pelvis_pose.orientation.y, pelvis_pose.orientation.z, pelvis_pose.orientation.w]
         (_, pelvis_pitch, _) = euler_from_quaternion (pelvis_q)
         # Convert pose to frame
         pelvis_frame = pm.fromMsg(pelvis_pose)
         # Set left sole frame
-        l_sole_frame = kdl.Frame(kdl.Rotation.RPY(0,0,0), kdl.Vector(0, (self.rb_kinematics.HIP_TO_CROTCH), 0))
+        l_sole_frame = kdl.Frame(kdl.Rotation.RPY(0,0,0), kdl.Vector(0, (self.rb_kinematics.HIP_TO_CROTCH + support_y), 0))
         # Set right sole frame
-        r_sole_frame = kdl.Frame(kdl.Rotation.RPY(0,0,0), kdl.Vector(0, -(self.rb_kinematics.HIP_TO_CROTCH), 0))
+        r_sole_frame = kdl.Frame(kdl.Rotation.RPY(0,0,0), kdl.Vector(0, -(self.rb_kinematics.HIP_TO_CROTCH + support_y), 0))
 
         pelvis_frame_inv = pelvis_frame.Inverse()
         l_sole_from_pelvis = pelvis_frame_inv * l_sole_frame
