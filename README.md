@@ -49,32 +49,11 @@ source ~/.bashrc
 
 ## Install Dependencies
 
-### 1. python3-pykdl
+### 1. PyKDL
 
-python3-pykdl module is used for calculating kinematics of the robot. We prefer build the python-pykdl from the sources, rather than installing from rosdep. Please follow this guide for building the python-pykdl module.
+PyKDL module is Python version of liborocos-kdl which used for calculating kinematics of the robot. We prefer build the PyKDL from the sources. Please follow this link for building the PyKDL module.
 
-**Deactivate conda environment**
-
-```bash
-conda deactivate
-```
-
-Install python-pykdl from source
-
-```bash
-wget https://github.com/orocos/orocos_kinematics_dynamics/archive/v1.4.0.tar.gz
-tar -xvzf v1.4.0.tar.gz
-cd orocos_kinematics_dynamics-1.4.0/python_orocos_kdl/
-mkdir build && cd build
-cmake -DMAKE_BUILD_TYPE=Release -DPYTHON_VERSION=3.8.2 ..
-make -j12
-```
-
-Copy module to conda environment
-
-```bash
-cp PyKDL.so ~/anaconda3/envs/ros/lib/python3.8/site-packages/
-```
+https://github.com/EDGS-GIT/python_orocos_kdl
 
 ## Setup Robinion ROS Framework
 
