@@ -30,11 +30,11 @@ chmod +x Anaconda3-2020.07-Linux-x86_64.sh
 source ~/.bashrc
 ```
 
-### 2. Create Virtual Environment
+### 2. Create Conda Virtual Environment
 
 ```bash
-git clone https://github.com/ekorudiawan/conda-environment.git
-cd conda-environment
+git clone https://github.com/EDGS-GIT/conda_environment.git
+cd conda_environment
 conda env create -f robinion-ros-env.yml
 ```
 
