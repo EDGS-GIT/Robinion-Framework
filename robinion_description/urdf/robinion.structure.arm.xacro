@@ -149,6 +149,34 @@
 		<link name="l_wrist">
 		</link>
 
+		<joint name="l_gripper_fixed_joint" type="fixed">
+			<parent link="l_arm_3_link"/>
+			<child link="l_gripper"/>
+			<origin xyz="0.000 0.068 -0.025" rpy="0 0 0"/>
+		</joint>
+
+		<link name="l_gripper">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/l_gripper_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/l_gripper_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.000000 0.043774 0.003216" rpy="0.00 0.00 0.00"/>
+				<mass value="0.247773"/>
+				<inertia ixx="0.000210" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000119" iyz="0.000017"
+						 izz="0.000219" />
+			</inertial>
+		</link>
+
 	</xacro:macro>
 
 	<xacro:macro name="robinion_r_arm" params="parent">
@@ -295,6 +323,34 @@
 		</joint>
 
 		<link name="r_wrist">
+		</link>
+
+		<joint name="r_gripper_fixed_joint" type="fixed">
+			<parent link="r_arm_3_link"/>
+			<child link="r_gripper"/>
+			<origin xyz="0.000 -0.068 -0.025" rpy="0 0 0"/>
+		</joint>
+
+		<link name="r_gripper">
+			<collision>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/collision/r_gripper_collision.stl"/>
+				</geometry>
+			</collision>
+			<visual>
+				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
+				<geometry>
+					<mesh filename="package://robinion_description/meshes/visual/r_gripper_visual.stl"/>
+				</geometry>
+			</visual>
+			<inertial>
+				<origin xyz="0.000000 -0.043774 0.003216" rpy="0.00 0.00 0.00"/>
+				<mass value="0.247773"/>
+				<inertia ixx="0.000210" ixy="0.000000" ixz="0.000000"
+						 iyy="0.000119" iyz="-0.000017"
+						 izz="0.000219" />
+			</inertial>
 		</link>
 
 	</xacro:macro>
