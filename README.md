@@ -184,6 +184,23 @@ This command will make the robot stop walking.
 rostopic pub /robinion/walking_module/state robinion_msgs/WalkingState "state: 'stop'"
 ```
 
-### Robot Mode
+#### 2. Testing motion_player_module
 
-**TO DO**
+Example for calling initialize motion
+
+```bash
+rostopic pub /robinion/motion_player/play_motion/goal robinion_msgs/PlayMotionActionGoal "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs: 0
+  id: ''
+goal:
+  motion_name: 'initialize'
+  movement_time: 2.0"
+```
