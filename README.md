@@ -62,6 +62,7 @@ Robinion Framework
 ```bash
 mkdir ~/robinion_ws && cd ~/robinion_ws
 git clone https://github.com/EDGS-GIT/Robinion-Framework.git
+mv Robinion-Framework src
 ```
 
 DynamixelSDK
@@ -84,7 +85,7 @@ Robotis Framework Msgs
 
 ```bash
 cd ~/robinion_ws/src
-https://github.com/ROBOTIS-GIT/ROBOTIS-Framework-msgs.git
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-Framework-msgs.git
 ```
 
 Robotis-Math
@@ -115,14 +116,19 @@ rm -rf 0.4.3.tar.gz
 **Compile Robinion Framework**
 
 ```bash
+cd ~/robinion_ws/src/robinion_manager
+mkdir include
 cd ~/robinion_ws/
 catkin_make -j12
 source devel/setup.bash
 ```
 
-**TODO**
-1. Add new servo device
-2. Fix include folder error
+**Add servo device**
+
+```bash
+cd ~/robinion_ws/src/ROBOTIS-Framework/robotis_device/devices/dynamixel
+cp XM540-W270.device XH540-W270.device
+```
 
 ## Testing Robinion Framework
 
@@ -178,6 +184,23 @@ This command will make the robot stop walking.
 rostopic pub /robinion/walking_module/state robinion_msgs/WalkingState "state: 'stop'"
 ```
 
-### Robot Mode
+#### 2. Testing motion_player_module
 
-**TO DO**
+Example for calling initialize motion
+
+```bash
+rostopic pub /robinion/motion_player/play_motion/goal robinion_msgs/PlayMotionActionGoal "header:
+  seq: 0
+  stamp:
+    secs: 0
+    nsecs: 0
+  frame_id: ''
+goal_id:
+  stamp:
+    secs: 0
+    nsecs: 0
+  id: ''
+goal:
+  motion_name: 'initialize'
+  movement_time: 2.0"
+```
