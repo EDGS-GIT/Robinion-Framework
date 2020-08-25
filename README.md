@@ -123,8 +123,12 @@ catkin_make -j12
 source devel/setup.bash
 ```
 
-**TODO**
-1. Add new servo device
+**Add servo device**
+
+```bash
+cd ~/robinion_ws/src/ROBOTIS-Framework/robotis_device/devices/dynamixel
+cp XM540-W270.device XH540-W270.device
+'''
 
 ## Testing Robinion Framework
 
