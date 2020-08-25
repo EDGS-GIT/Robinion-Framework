@@ -62,6 +62,7 @@ Robinion Framework
 ```bash
 mkdir ~/robinion_ws && cd ~/robinion_ws
 git clone https://github.com/EDGS-GIT/Robinion-Framework.git
+mv Robinion-Framework src
 ```
 
 DynamixelSDK
@@ -84,7 +85,7 @@ Robotis Framework Msgs
 
 ```bash
 cd ~/robinion_ws/src
-https://github.com/ROBOTIS-GIT/ROBOTIS-Framework-msgs.git
+git clone https://github.com/ROBOTIS-GIT/ROBOTIS-Framework-msgs.git
 ```
 
 Robotis-Math
