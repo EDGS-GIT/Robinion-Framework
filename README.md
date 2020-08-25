@@ -125,7 +125,6 @@ source devel/setup.bash
 
 **TODO**
 1. Add new servo device
-2. Fix include folder error
 
 ## Testing Robinion Framework
 
