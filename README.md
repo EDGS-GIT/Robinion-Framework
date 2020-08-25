@@ -128,7 +128,7 @@ source devel/setup.bash
 ```bash
 cd ~/robinion_ws/src/ROBOTIS-Framework/robotis_device/devices/dynamixel
 cp XM540-W270.device XH540-W270.device
-'''
+```
 
 ## Testing Robinion Framework
 
