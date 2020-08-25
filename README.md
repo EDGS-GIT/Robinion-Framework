@@ -116,6 +116,8 @@ rm -rf 0.4.3.tar.gz
 **Compile Robinion Framework**
 
 ```bash
+cd ~/robinion_ws/src/robinion_manager
+mkdir include
 cd ~/robinion_ws/
 catkin_make -j12
 source devel/setup.bash
