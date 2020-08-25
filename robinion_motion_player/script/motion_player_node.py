@@ -171,6 +171,8 @@ class MotionPlayer():
     def initialize(self, movement_time=1.0, dt=0.01):
         q_full_body_init = self.rb_joint_states_data.q_full_body.copy()
         q_full_body_goal = np.zeros(q_full_body_init.shape)
+        # Set head pitch to 
+        q_full_body_goal[20] = 1.0
         # Set shoulder to down
         q_full_body_goal[12] = -np.pi/2
         q_full_body_goal[16] = np.pi/2
