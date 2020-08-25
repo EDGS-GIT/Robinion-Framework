@@ -272,8 +272,12 @@ class LegKinematics():
         return [q_hip_yaw, q_hip_roll, q_hip_pitch, q_ankle_pitch, q_ankle_roll]
     
     def calc_l_leg_ik(self, pose):
-        return self.leg_ik(pose, leg=0)
+        q = self.leg_ik(pose, leg=0)
+        q_to_joint = [-q[0], -q[1], q[2], -q[3], q[4]]
+        return q_to_joint
     
     def calc_r_leg_ik(self, pose):
-        return self.leg_ik(pose, leg=1)
+        q = self.leg_ik(pose, leg=1)
+        q_to_joint = [-q[0], -q[1], -q[2], q[3], q[4]]
+        return q_to_joint
     

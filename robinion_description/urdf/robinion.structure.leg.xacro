@@ -8,7 +8,7 @@
 			<parent link="${parent}"/>
 			<child link="l_hip_yaw_link"/>
 			<origin xyz="0.000 0.055 -0.006" rpy="0 0 0"/>
-			<axis xyz="0 0 1"/>
+			<axis xyz="0 0 -1"/>
 			<limit velocity="3.14" effort="10.6" lower="${-pi*0.9}" upper="${pi*0.9}" />
 			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -42,7 +42,7 @@
 			<parent link="l_hip_yaw_link"/>
 			<child link="l_hip_roll_pitch_link"/>
 			<origin xyz="0.048 0.000 -0.051" rpy="0 0 0"/>
-			<axis xyz="1 0 0"/>
+			<axis xyz="-1 0 0"/>
 			<limit velocity="4.08" effort="9.90" lower="${-pi*0.25}" upper="${pi*0.25}" />
 			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -269,7 +269,7 @@
 			<parent link="l_shank_back_link"/>
 			<child link="l_ankle_roll_pitch_link"/>
 			<origin xyz="0.000 0.000 -0.200" rpy="0 0 0"/>
-			<axis xyz="0 1 0"/>
+			<axis xyz="0 -1 0"/>
 			<limit velocity="4.08" effort="9.90" lower="${-pi*0.5}" upper="${pi*0.5}" />
 			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -373,7 +373,7 @@
 			<parent link="${parent}"/>
 			<child link="r_hip_yaw_link"/>
 			<origin xyz="0.000 -0.055 -0.006" rpy="0 0 0"/>
-			<axis xyz="0 0 1"/>
+			<axis xyz="0 0 -1"/>
 			<limit velocity="3.14" effort="10.6" lower="${-pi*0.9}" upper="${pi*0.9}" />
 			<!-- <limit velocity="3.14" effort="1000" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -407,7 +407,7 @@
 			<parent link="r_hip_yaw_link"/>
 			<child link="r_hip_roll_pitch_link"/>
 			<origin xyz="0.048 0.000 -0.051" rpy="0 0 0"/>
-			<axis xyz="1 0 0"/>
+			<axis xyz="-1 0 0"/>
 			<limit velocity="4.08" effort="9.90" lower="${-pi*0.25}" upper="${pi*0.25}" />
 			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -441,7 +441,7 @@
 			<parent link="r_hip_roll_pitch_link"/>
 			<child link="r_thigh_back_link"/>
 			<origin xyz="-0.066 0.025 0.000" rpy="0 0 0"/>
-			<axis xyz="0 1 0"/>
+			<axis xyz="0 -1 0"/>
 			<limit velocity="4.08" effort="9.90" lower="${-pi*0.5}" upper="${pi*0.5}" />
 			<!-- <limit velocity="4.08" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />

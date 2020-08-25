@@ -80,7 +80,7 @@ class ForwardKinematics(KinematicsSolver):
         rospy.loginfo("============================")
 
         # Left Arm Chain
-        self.l_arm_chain = tree.getChain("torso_link", "l_wrist")
+        self.l_arm_chain = tree.getChain("torso_link", "l_end_effector")
         l_arm_chain_n_joints = self.l_arm_chain.getNrOfJoints()
         rospy.loginfo("Left Arm n-Joint : %d", l_arm_chain_n_joints)
         for i in range(l_arm_chain_n_joints):
@@ -89,7 +89,7 @@ class ForwardKinematics(KinematicsSolver):
         rospy.loginfo("============================")
 
         # Right Arm Chain
-        self.r_arm_chain = tree.getChain("torso_link", "r_wrist")
+        self.r_arm_chain = tree.getChain("torso_link", "r_end_effector")
         r_arm_chain_n_joints = self.r_arm_chain.getNrOfJoints()
         rospy.loginfo("Right Arm n-Joint : %d", r_arm_chain_n_joints)
         for i in range(r_arm_chain_n_joints):

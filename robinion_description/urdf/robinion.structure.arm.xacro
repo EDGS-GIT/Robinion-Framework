@@ -42,7 +42,7 @@
 			<parent link="l_shoulder_link"/>
 			<child link="l_arm_1_link"/>
 			<origin xyz="0.025 0.033 -0.021" rpy="0 0 0"/>
-			<axis xyz="1 0 0"/>
+			<axis xyz="-1 0 0"/>
 			<limit velocity="3.14" effort="10.6" lower="${-pi*0.5}" upper="${pi*0.5}" />
 			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -110,7 +110,7 @@
 			<parent link="l_arm_2_link"/>
 			<child link="l_arm_3_link"/>
 			<origin xyz="0.022 0.060 0.025" rpy="0 0 0"/>
-			<axis xyz="0 0 1"/>
+			<axis xyz="0 0 -1"/>
 			<limit velocity="3.14" effort="10.6" lower="${-pi*0.5}" upper="${pi*0.5}" />
 			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -165,7 +165,7 @@
 			<visual>
 				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
 				<geometry>
-					<mesh filename="package://robinion_description/meshes/visual/l_gripper_visual.stl"/>
+					<mesh filename="package://robinion_description/meshes/visual/l_gripper_closed_visual.stl"/>
 				</geometry>
 			</visual>
 			<inertial>
@@ -177,6 +177,15 @@
 			</inertial>
 		</link>
 
+		<joint name="l_end_effector_fixed_joint" type="fixed">
+			<parent link="l_gripper"/>
+			<child link="l_end_effector"/>
+			<origin xyz="0.000 0.1 0.0" rpy="0 0 0"/>
+		</joint>
+
+		<link name="l_end_effector">
+		</link>
+
 	</xacro:macro>
 
 	<xacro:macro name="robinion_r_arm" params="parent">
@@ -184,7 +193,7 @@
 			<parent link="${parent}"/>
 			<child link="r_shoulder_link"/>
 			<origin xyz="-0.021 -0.131 0.139" rpy="0 0 0"/>
-			<axis xyz="0 1 0"/>
+			<axis xyz="0 -1 0"/>
 			<limit velocity="3.14" effort="10.6" lower="${-pi*0.9}" upper="${pi*0.9}" />
 			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -218,7 +227,7 @@
 			<parent link="r_shoulder_link"/>
 			<child link="r_arm_1_link"/>
 			<origin xyz="0.025 -0.033 -0.021" rpy="0 0 0"/>
-			<axis xyz="1 0 0"/>
+			<axis xyz="-1 0 0"/>
 			<limit velocity="3.14" effort="10.6" lower="${-pi*0.5}" upper="${pi*0.5}" />
 			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -252,7 +261,7 @@
 			<parent link="r_arm_1_link"/>
 			<child link="r_arm_2_link"/>
 			<origin xyz="-0.025 -0.118 0.000" rpy="0 0 0"/>
-			<axis xyz="0 1 0"/>
+			<axis xyz="0 -1 0"/>
 			<limit velocity="4.82" effort="4.1" lower="${-pi*0.9}" upper="${pi*0.9}" />
 			<!-- <limit velocity="4.82" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -286,7 +295,7 @@
 			<parent link="r_arm_2_link"/>
 			<child link="r_arm_3_link"/>
 			<origin xyz="0.022 -0.060 0.025" rpy="0 0 0"/>
-			<axis xyz="0 0 1"/>
+			<axis xyz="0 0 -1"/>
 			<limit velocity="3.14" effort="10.6" lower="${-pi*0.5}" upper="${pi*0.5}" />
 			<!-- <limit velocity="3.14" effort="100" lower="-3" upper="3" /> -->
 			<dynamics damping="0.1" friction="0.0" />
@@ -341,7 +350,7 @@
 			<visual>
 				<origin xyz="0.00 0.00 0.00" rpy="0.00 0.00 0.00"/>
 				<geometry>
-					<mesh filename="package://robinion_description/meshes/visual/r_gripper_visual.stl"/>
+					<mesh filename="package://robinion_description/meshes/visual/r_gripper_closed_visual.stl"/>
 				</geometry>
 			</visual>
 			<inertial>
@@ -351,6 +360,15 @@
 						 iyy="0.000119" iyz="-0.000017"
 						 izz="0.000219" />
 			</inertial>
+		</link>
+
+		<joint name="r_end_effector_fixed_joint" type="fixed">
+			<parent link="r_gripper"/>
+			<child link="r_end_effector"/>
+			<origin xyz="0.000 -0.1 0.0" rpy="0 0 0"/>
+		</joint>
+
+		<link name="r_end_effector">
 		</link>
 
 	</xacro:macro>

@@ -4,7 +4,7 @@
     <!-- <arg name="use_imu" default="true"/> -->
     <!-- <arg name="use_lidar" default="true" />   -->
 
-    <param name="gazebo"                   value="false"    type="bool"/>
+    <param name="gazebo_mode"              value="false"    type="bool"/>
     <param name="gazebo_robot_name"        value="robinion"/>
 
     <param name="offset_file_path"         value="$(find robinion_manager)/config/offset.yaml"/>

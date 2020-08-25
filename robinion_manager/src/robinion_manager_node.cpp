@@ -136,11 +136,16 @@ int main(int argc, char **argv)
 
     /* gazebo simulation*/
     // controller->gazebo_mode_ = nh.param<bool>("gazebo", false);
-    nh.param<bool>("gazebo", controller->gazebo_mode_, false);
+    nh.param<bool>("gazebo_mode", controller->gazebo_mode_, false);
     g_is_simulation = controller->gazebo_mode_;
 
     if (g_is_simulation == false)
     {
+        ROS_WARN("SET TO ROBOT MODE!");
+        std::string robot_name;
+        nh.param<std::string>("gazebo_robot_name", robot_name, "");
+        if (robot_name != "")
+        controller->gazebo_robot_name_ = robot_name;
         // open port
         PortHandler *port_handler = (PortHandler *) PortHandler::getPortHandler(g_device_name.c_str());
         bool set_port_result = port_handler->setBaudRate(BAUD_RATE);
