@@ -172,10 +172,14 @@ class MotionPlayer():
         q_full_body_init = self.rb_joint_states_data.q_full_body.copy()
         q_full_body_goal = np.zeros(q_full_body_init.shape)
         # Set head pitch to 
-        q_full_body_goal[20] = -1.0
+        q_full_body_goal[20] = 0.0
         # Set shoulder to down
-        q_full_body_goal[12] = np.pi/2
-        q_full_body_goal[16] = -np.pi/2
+        q_full_body_goal[11] = 0.4
+        q_full_body_goal[12] = 1.4
+        q_full_body_goal[14] = 1.0
+        q_full_body_goal[15] = -0.4
+        q_full_body_goal[16] = -1.4
+        q_full_body_goal[18] = -1.0
         q_full_body_traj = self.trajectory_generator.minimum_jerk(q_full_body_init, q_full_body_goal, d=movement_time, dt=dt)
         t = 0.0
         for i in range(q_full_body_traj.shape[0]):

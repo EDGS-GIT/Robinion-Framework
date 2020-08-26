@@ -13,6 +13,8 @@
 
     <param name="device_name"              value="/dev/ttyUSB0"/>
 
+    <param name="robot_description" command="$(find xacro)/xacro '$(find robinion_description)/urdf/robinion.xacro'" />
+    
     <!-- THORMANG3 Manager -->
     <node name="robinion_manager" pkg="robinion_manager" type="robinion_manager_node" output="screen"/>
 
