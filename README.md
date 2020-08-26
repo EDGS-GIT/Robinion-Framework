@@ -113,6 +113,13 @@ tar -xvzf 0.4.3.tar.gz
 rm -rf 0.4.3.tar.gz
 ```
 
+**Add servo device**
+
+```bash
+cd ~/robinion_ws/src/ROBOTIS-Framework/robotis_device/devices/dynamixel
+cp XM540-W270.device XH540-W270.device
+```
+
 **Compile Robinion Framework**
 
 ```bash
@@ -121,13 +128,6 @@ mkdir include
 cd ~/robinion_ws/
 catkin_make -j12
 source devel/setup.bash
-```
-
-**Add servo device**
-
-```bash
-cd ~/robinion_ws/src/ROBOTIS-Framework/robotis_device/devices/dynamixel
-cp XM540-W270.device XH540-W270.device
 ```
 
 ## Testing Robinion Framework
@@ -139,7 +139,7 @@ cp XM540-W270.device XH540-W270.device
 Launch robinion_walking_module
 
 ```bash
-roslaunch robinion_walking_module test_walking_module.launch
+rroslaunch robinion_walking_module test_walking_module_gazebo.launch
 ```
 
 Open Gazebo Client
