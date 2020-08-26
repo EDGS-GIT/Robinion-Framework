@@ -163,7 +163,7 @@ rostopic pub /robinion/walking_module/state robinion_msgs/WalkingState "state: '
 This command will make the robot start walking (stepping in place)
 
 ```bash
-rostopic pub /robinion/walking_module/state robinion_msgs/WalkingState "state: 'start
+rostopic pub /robinion/walking_module/state robinion_msgs/WalkingState "state: 'start'"
 ```
 
 **Send Walking Command**
