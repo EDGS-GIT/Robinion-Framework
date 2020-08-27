@@ -110,8 +110,12 @@ class MotionPlayer():
         self.play_motion_as.set_succeeded(result)
 
     def set_pelvis_pose(self, pelvis_pose, movement_time=1.0, dt=0.01):
-        support_x = rospy.get_param("/gait_param/gazebo/support_x")
-        support_y = rospy.get_param("/gait_param/gazebo/support_y")
+        if rospy.get_param("/gazebo_mode"):
+            support_x = rospy.get_param("/gait_param/gazebo/support_x")
+            support_y = rospy.get_param("/gait_param/gazebo/support_y")
+        else:
+            support_x = rospy.get_param("/gait_param/robot/support_x")
+            support_y = rospy.get_param("/gait_param/robot/support_y")
         # offset in x-axis
         pelvis_pose.position.x = pelvis_pose.position.x + support_x
         pelvis_q = [pelvis_pose.orientation.x, pelvis_pose.orientation.y, pelvis_pose.orientation.z, pelvis_pose.orientation.w]
