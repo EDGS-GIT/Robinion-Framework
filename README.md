@@ -139,7 +139,7 @@ source devel/setup.bash
 Launch robinion_walking_module
 
 ```bash
-rroslaunch robinion_walking_module test_walking_module_gazebo.launch
+roslaunch robinion_walking_module test_walking_module_gazebo.launch
 ```
 
 Open Gazebo Client
@@ -203,4 +203,20 @@ goal_id:
 goal:
   motion_name: 'initialize'
   movement_time: 2.0"
+```
+### Robot Mode
+
+#### 1. Testing walking_control_module
+
+Launch robinion_manager
+
+```bash
+sudo su
+roslaunch robinion_manager robinion_robot.launch
+```
+
+Launch walking_module
+
+```bash
+roslaunch robinion_walking_module test_walking_module_robot.launch
 ```
