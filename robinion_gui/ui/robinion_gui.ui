@@ -27,7 +27,7 @@
      <item>
       <widget class="QTabWidget" name="tabWidget">
        <property name="currentIndex">
-        <number>0</number>
+        <number>1</number>
        </property>
        <widget class="QWidget" name="tab_walking">
         <attribute name="title">
@@ -256,6 +256,315 @@
            </layout>
           </item>
          </layout>
+        </widget>
+       </widget>
+       <widget class="QWidget" name="tab_gait_parameter">
+        <attribute name="title">
+         <string>Gait Parameter</string>
+        </attribute>
+        <widget class="QWidget" name="verticalLayoutWidget_2">
+         <property name="geometry">
+          <rect>
+           <x>50</x>
+           <y>20</y>
+           <width>161</width>
+           <height>241</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_5">
+          <item>
+           <widget class="QLabel" name="labelLImit">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Limit</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_4">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="gridLayout_3">
+            <item row="1" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_max_vx"/>
+            </item>
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_max_vx">
+              <property name="text">
+               <string>max_vx</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_min_vy">
+              <property name="text">
+               <string>min_vy</string>
+              </property>
+             </widget>
+            </item>
+            <item row="4" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_min_va"/>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_max_vy">
+              <property name="text">
+               <string>max_vy</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="label_min_vx">
+              <property name="text">
+               <string>min_vx</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_min_vx"/>
+            </item>
+            <item row="3" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_max_vy"/>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_min_vy"/>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_min_va">
+              <property name="text">
+               <string>min_va</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="label_max_va">
+              <property name="text">
+               <string>max_va</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_max_va"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QWidget" name="verticalLayoutWidget_3">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>20</y>
+           <width>331</width>
+           <height>241</height>
+          </rect>
+         </property>
+         <layout class="QVBoxLayout" name="verticalLayout_7">
+          <item>
+           <widget class="QLabel" name="labelParameter">
+            <property name="font">
+             <font>
+              <pointsize>12</pointsize>
+              <weight>75</weight>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>Parameter</string>
+            </property>
+            <property name="alignment">
+             <set>Qt::AlignCenter</set>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <spacer name="verticalSpacer_5">
+            <property name="orientation">
+             <enum>Qt::Vertical</enum>
+            </property>
+            <property name="sizeHint" stdset="0">
+             <size>
+              <width>20</width>
+              <height>40</height>
+             </size>
+            </property>
+           </spacer>
+          </item>
+          <item>
+           <layout class="QGridLayout" name="gridLayout_4">
+            <item row="1" column="0">
+             <widget class="QLabel" name="label_t_step">
+              <property name="text">
+               <string>t_step</string>
+              </property>
+             </widget>
+            </item>
+            <item row="1" column="2">
+             <widget class="QDoubleSpinBox" name="dSB_rb_t_step"/>
+            </item>
+            <item row="4" column="0">
+             <widget class="QLabel" name="label_support_x">
+              <property name="text">
+               <string>support_x</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="2">
+             <widget class="QDoubleSpinBox" name="dSB_rb_dsp_ratio"/>
+            </item>
+            <item row="0" column="0">
+             <widget class="QLabel" name="labelParameterName">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Name</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="0">
+             <widget class="QLabel" name="label_swing_foot_height">
+              <property name="text">
+               <string>swing_foot_height</string>
+              </property>
+             </widget>
+            </item>
+            <item row="5" column="0">
+             <widget class="QLabel" name="label_support_y">
+              <property name="text">
+               <string>support_y</string>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="1">
+             <widget class="QLabel" name="labelParameterGazebo">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Gazebo</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="0" column="2">
+             <widget class="QLabel" name="labelParameterRobot">
+              <property name="font">
+               <font>
+                <weight>75</weight>
+                <bold>true</bold>
+               </font>
+              </property>
+              <property name="text">
+               <string>Robot</string>
+              </property>
+              <property name="alignment">
+               <set>Qt::AlignCenter</set>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="0">
+             <widget class="QLabel" name="label_dsp_ratio">
+              <property name="text">
+               <string>dsp_ratio</string>
+              </property>
+             </widget>
+            </item>
+            <item row="2" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_gz_dsp_ratio"/>
+            </item>
+            <item row="1" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_gz_t_step"/>
+            </item>
+            <item row="6" column="0">
+             <widget class="QLabel" name="label_body_tilt">
+              <property name="text">
+               <string>body_tilt</string>
+              </property>
+             </widget>
+            </item>
+            <item row="3" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_gz_swing_foot_height"/>
+            </item>
+            <item row="4" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_gz_support_x"/>
+            </item>
+            <item row="5" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_gz_support_y"/>
+            </item>
+            <item row="6" column="1">
+             <widget class="QDoubleSpinBox" name="dSB_gz_body_tilt"/>
+            </item>
+            <item row="3" column="2">
+             <widget class="QDoubleSpinBox" name="dSB_rb_swing_foot_height"/>
+            </item>
+            <item row="4" column="2">
+             <widget class="QDoubleSpinBox" name="dSB_rb_support_x"/>
+            </item>
+            <item row="5" column="2">
+             <widget class="QDoubleSpinBox" name="dSB_rb_support_y"/>
+            </item>
+            <item row="6" column="2">
+             <widget class="QDoubleSpinBox" name="dSB_rb_body_tilt"/>
+            </item>
+           </layout>
+          </item>
+         </layout>
+        </widget>
+        <widget class="QPushButton" name="pushButtonLoadParameter">
+         <property name="geometry">
+          <rect>
+           <x>290</x>
+           <y>280</y>
+           <width>141</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Load Parameter</string>
+         </property>
+        </widget>
+        <widget class="QPushButton" name="pushButtonSaveParameter">
+         <property name="geometry">
+          <rect>
+           <x>480</x>
+           <y>280</y>
+           <width>141</width>
+           <height>41</height>
+          </rect>
+         </property>
+         <property name="text">
+          <string>Save Parameter</string>
+         </property>
         </widget>
        </widget>
        <widget class="QWidget" name="tab_manipulation">
